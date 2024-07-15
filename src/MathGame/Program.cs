@@ -1,4 +1,4 @@
-﻿using PabloMath;
+﻿using MathGame;
 using static System.Formats.Asn1.AsnWriter;
 
 var menu = new Menu();

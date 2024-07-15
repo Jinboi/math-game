@@ -1,6 +1,6 @@
-﻿using PabloMath.Models;
+﻿using MathGame.Models;
 
-namespace PabloMath;
+namespace MathGame;
 internal class Helpers
 {
     internal static List<Game> games = new List<Game>

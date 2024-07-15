@@ -1,9 +1,7 @@
-﻿namespace PabloMath.Models;
+﻿namespace MathGame.Models;
 
 internal class Game
 {
-    private int _score;
-
     internal DateTime Date {  get; set; }
     internal int Score { get; set; }
     internal GameType Type { get; set; }

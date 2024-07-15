@@ -1,4 +1,4 @@
-﻿namespace PabloMath
+﻿namespace MathGame
 {
     internal class Menu
     {
