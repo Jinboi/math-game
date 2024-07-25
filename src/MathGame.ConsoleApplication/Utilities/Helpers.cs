@@ -4,11 +4,10 @@
 // Helper class to provide sample data and other functions used in GameEngine.
 // -------------------------------------------------------------------------------------------------
 
-
 using MathGame.Enums;
 using MathGame.Models;
 
-namespace MathGame.ConsoleApplication;
+namespace MathGame.ConsoleApplication.Utilities;
 internal class Helpers
 {
 
@@ -29,7 +28,7 @@ internal class Helpers
         new Game { Date = DateTime.Now.AddDays(10), Type = GameType.Mulitplication, Score = 1 },
         new Game { Date = DateTime.Now.AddDays(11), Type = GameType.Subtraction, Score = 0 },
         new Game { Date = DateTime.Now.AddDays(12), Type = GameType.Division, Score = 2 },
-        new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 },        
+        new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 },
     };
 
     internal static int[] GetDivisionNumbers()
@@ -83,18 +82,14 @@ internal class Helpers
 
     internal static string? ValidateResult(string result)
     {
-        while (string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
+        while (string.IsNullOrEmpty(result) || !int.TryParse(result, out _))
         {
             Console.WriteLine("Your answer needs to be an intger. Try again");
             result = Console.ReadLine();
         }
         return result;
     }
-
-    #endregion
-    #region Methods: Public
-
-    public static string GetName()
+    internal static string GetName()
     {
         Console.WriteLine("Please input your name");
         var name = Console.ReadLine();
@@ -109,5 +104,4 @@ internal class Helpers
     }
 
     #endregion
-
 }

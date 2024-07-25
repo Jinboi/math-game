@@ -4,8 +4,10 @@
 // The menu for the console application.
 // -------------------------------------------------------------------------------------------------
 
+using MathGame.ConsoleApplication.Models;
+using MathGame.ConsoleApplication.Utilities;
 
-namespace MathGame.ConsoleApplication;
+namespace MathGame.ConsoleApplication.Views;
 internal class Menu
 {
     #region Constructors

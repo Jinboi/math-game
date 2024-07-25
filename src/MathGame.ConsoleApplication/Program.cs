@@ -4,6 +4,9 @@
 // The insertion point of the console application.
 // -------------------------------------------------------------------------------------------------
 
+using MathGame.ConsoleApplication.Utilities;
+using MathGame.ConsoleApplication.Views;
+
 namespace MathGame.ConsoleApplication
 {
     internal class Program

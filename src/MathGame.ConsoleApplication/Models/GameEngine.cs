@@ -4,11 +4,21 @@
 // Provides Division, Multiplication, Subtraction, and Addition Game Logics.
 // -------------------------------------------------------------------------------------------------
 
+using MathGame.ConsoleApplication.Utilities;
 using MathGame.Enums;
 
-namespace MathGame.ConsoleApplication;
+namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
 {
+    internal void PlayGame(GameType gameType)
+    {
+        Console.WriteLine("Please select a difficulty: ");
+        Console.WriteLine("1 - Easy ");
+        Console.WriteLine("2 - Normal ");
+        Console.WriteLine("3 - Hard ");
+
+    }
+
     #region Methods: Internal
     internal void DivisionGame(string message)
     {
@@ -45,10 +55,8 @@ internal class GameEngine
 
         Helpers.AddToHistory(score, GameType.Division);
     }
-
     internal void MultiplicationGame(string message)
     {
-
         var random = new Random();
         var score = 0;
 
@@ -88,7 +96,6 @@ internal class GameEngine
 
         Helpers.AddToHistory(score, GameType.Mulitplication);
     }
-
     internal void SubtractionGame(string message)
     {
 
@@ -132,7 +139,6 @@ internal class GameEngine
         Helpers.AddToHistory(score, GameType.Subtraction);
 
     }
-
     internal void AdditionGame(string message)
     {
         var random = new Random();
