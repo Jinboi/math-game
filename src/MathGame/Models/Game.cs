@@ -1,15 +1,9 @@
-﻿namespace MathGame.Models;
+﻿using MathGame.Enums;
 
-internal class Game
+namespace MathGame.Models;
+public class Game
 {
-    internal DateTime Date {  get; set; }
-    internal int Score { get; set; }
-    internal GameType Type { get; set; }
-}
-internal enum GameType
-{
-    Addition,
-    Subtraction,
-    Mulitplication,
-    Division
+    public DateTime Date {  get; set; }
+    public int Score { get; set; }
+    public GameType Type { get; set; }
 }

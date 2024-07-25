@@ -1,6 +1,7 @@
-﻿using MathGame.Models;
+﻿using MathGame.Enums;
+using MathGame.Models;
 
-namespace MathGame;
+namespace MathGame.ConsoleApplication;
 internal class Helpers
 {
     internal static List<Game> games = new List<Game>
@@ -81,11 +82,11 @@ internal class Helpers
         return result;
     }
 
-    internal static string GetName()
+    public static string GetName()
     {
         Console.WriteLine("Please input your name");
         var name = Console.ReadLine();
-        
+
 
         while (string.IsNullOrEmpty(name))
         {
