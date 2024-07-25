@@ -1,15 +1,15 @@
 ﻿// -------------------------------------------------------------------------------------------------
 // MathGame.Program
 // -------------------------------------------------------------------------------------------------
-// Add some description
+// The insertion point of the console application.
 // -------------------------------------------------------------------------------------------------
-using MathGame.Models;
 
 namespace MathGame.ConsoleApplication
 {
     internal class Program
     {
-        public static void Main(string[] args)
+        #region Methods: Private Static
+        private static void Main(string[] args)
         {
             var menu = new Menu();
             var date = DateTime.UtcNow;
@@ -20,5 +20,7 @@ namespace MathGame.ConsoleApplication
 
             menu.ShowMenu(name, date);
         }
+
+        #endregion
     }
 }

@@ -1,9 +1,15 @@
-﻿using MathGame.Enums;
-using MathGame.Models;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.ConsoleApplication.GameEngine
+// -------------------------------------------------------------------------------------------------
+// Provides Division, Multiplication, Subtraction, and Addition Game Logics.
+// -------------------------------------------------------------------------------------------------
+
+using MathGame.Enums;
 
 namespace MathGame.ConsoleApplication;
 internal class GameEngine
 {
+    #region Methods: Internal
     internal void DivisionGame(string message)
     {
         var score = 0;
@@ -179,5 +185,6 @@ internal class GameEngine
 
     }
 
+    #endregion
 }
 

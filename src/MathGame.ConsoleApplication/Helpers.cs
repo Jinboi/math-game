@@ -1,12 +1,22 @@
-﻿using MathGame.Enums;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.ConsoleApplication.Helpers
+// -------------------------------------------------------------------------------------------------
+// Helper class to provide sample data and other functions used in GameEngine.
+// -------------------------------------------------------------------------------------------------
+
+
+using MathGame.Enums;
 using MathGame.Models;
 
 namespace MathGame.ConsoleApplication;
 internal class Helpers
 {
+
+    #region Methods: Internal
+
     internal static List<Game> games = new List<Game>
     {
-        /*
+        //Providing Sample Game History Data
         new Game { Date = DateTime.Now.AddDays(1), Type = GameType.Addition, Score = 5 },
         new Game { Date = DateTime.Now.AddDays(2), Type = GameType.Mulitplication, Score = 4 },
         new Game { Date = DateTime.Now.AddDays(3), Type = GameType.Division, Score = 4 },
@@ -19,8 +29,7 @@ internal class Helpers
         new Game { Date = DateTime.Now.AddDays(10), Type = GameType.Mulitplication, Score = 1 },
         new Game { Date = DateTime.Now.AddDays(11), Type = GameType.Subtraction, Score = 0 },
         new Game { Date = DateTime.Now.AddDays(12), Type = GameType.Division, Score = 2 },
-        new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 },
-        */
+        new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 },        
     };
 
     internal static int[] GetDivisionNumbers()
@@ -82,6 +91,9 @@ internal class Helpers
         return result;
     }
 
+    #endregion
+    #region Methods: Public
+
     public static string GetName()
     {
         Console.WriteLine("Please input your name");
@@ -95,5 +107,7 @@ internal class Helpers
         }
         return name;
     }
+
+    #endregion
 
 }

@@ -1,7 +1,19 @@
-﻿namespace MathGame.ConsoleApplication;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.ConsoleApplication.Menu
+// -------------------------------------------------------------------------------------------------
+// The menu for the console application.
+// -------------------------------------------------------------------------------------------------
+
+
+namespace MathGame.ConsoleApplication;
 internal class Menu
 {
+    #region Constructors
+
     GameEngine gameEngine = new();
+
+    #endregion
+    #region Methods:Public
     public void ShowMenu(string name, DateTime date)
     {
         Console.Clear();
@@ -54,4 +66,5 @@ internal class Menu
             }
         } while (isGameOn);
     }
+    #endregion
 }
