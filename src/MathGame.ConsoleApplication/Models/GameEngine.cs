@@ -9,16 +9,7 @@ using MathGame.Enums;
 
 namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
-{
-    internal void PlayGame(GameType gameType)
-    {
-        Console.WriteLine("Please select a difficulty: ");
-        Console.WriteLine("1 - Easy ");
-        Console.WriteLine("2 - Normal ");
-        Console.WriteLine("3 - Hard ");
-
-    }
-
+{   
     #region Methods: Internal
     internal void DivisionGame(string message)
     {
@@ -98,8 +89,6 @@ internal class GameEngine
     }
     internal void SubtractionGame(string message)
     {
-
-
         var random = new Random();
         var score = 0;
 
@@ -141,11 +130,23 @@ internal class GameEngine
     }
     internal void AdditionGame(string message)
     {
+        Console.WriteLine("Choose Your Game Difficulty");
+
+        Console.WriteLine($@"
+                    Choose Your Game Difficulty:
+                    1 - Easy
+                    2 - Normal
+                    3 - Hard");
+        Console.WriteLine("_____________");
+
+        var gameDifficulty = Console.ReadLine();
+
         var random = new Random();
         var score = 0;
 
         int firstNumber;
         int secondNumber;
+
 
         for (int i = 0; i < 5; i++)
         {
