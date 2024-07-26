@@ -131,16 +131,49 @@ internal class GameEngine
     }
     internal void AdditionGame(string message)
     {
+
         Console.WriteLine("Choose Your Game Difficulty");
 
         Console.WriteLine($@"
-                    Choose Your Game Difficulty:
-                    1 - Easy
-                    2 - Normal
-                    3 - Hard");
+        Choose Your Game Difficulty:
+        1 - Easy
+        2 - Normal
+        3 - Hard");
         Console.WriteLine("_____________");
 
-        var gameDifficulty = Console.ReadLine();
+        var gameDifficultySelected = Console.ReadLine();
+
+        int minNum;
+        int maxNum;
+
+        if (int.TryParse(gameDifficultySelected, out int difficulty))
+        {
+            GameDifficulty selectedDifficulty = (GameDifficulty)difficulty;
+
+            switch (selectedDifficulty)
+            {
+                case GameDifficulty.Easy:
+                    minNum = 1;
+                    maxNum = 9;
+                    break;
+                case GameDifficulty.Normal:
+                    minNum = 1;
+                    maxNum = 99;
+                    break;
+                case GameDifficulty.Hard:
+                    minNum = 1;
+                    maxNum = 999;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Input");
+                    return; 
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid Input");
+            return;
+        }
 
         var random = new Random();
         var score = 0;
@@ -148,23 +181,19 @@ internal class GameEngine
         int firstNumber;
         int secondNumber;
 
-
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
             Console.WriteLine(message);
 
-            firstNumber = random.Next(1, 9);
-            secondNumber = random.Next(1, 9);
+            firstNumber = random.Next(minNum, maxNum + 1); 
+            secondNumber = random.Next(minNum, maxNum + 1);
 
             Console.WriteLine($"{firstNumber} + {secondNumber}");
 
             var result = Console.ReadLine();
 
             result = Helpers.ValidateResult(result);
-
-
-
 
             if (int.Parse(result) == firstNumber + secondNumber)
             {
@@ -180,7 +209,7 @@ internal class GameEngine
 
             if (i == 4)
             {
-                Console.WriteLine($"Game over. Your final score is {score}. Press any keo to go back to menu");
+                Console.WriteLine($"Game over. Your final score is {score}. Press any key to go back to the menu");
                 Console.ReadLine();
             }
         }

@@ -21,7 +21,6 @@ public class DataManager
         new Game { Date = DateTime.Now.AddDays(12), Type = GameType.Division, Score = 2 },
         new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 },
     };
-
     public static void AddToHistory(int gameScore, GameType gameType)
     {
         games.Add(new Game
