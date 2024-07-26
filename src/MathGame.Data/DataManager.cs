@@ -4,7 +4,7 @@ using MathGame.Models;
 
 namespace MathGame.Data
 {
-    public class MathGameDataManager
+    public class DataManager
     {
         public static List<Game> games = new List<Game>
         {

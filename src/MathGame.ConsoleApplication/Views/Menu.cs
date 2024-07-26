@@ -6,6 +6,7 @@
 
 using MathGame.ConsoleApplication.Models;
 using MathGame.ConsoleApplication.Utilities;
+using MathGame.DataControl;
 
 namespace MathGame.ConsoleApplication.Views;
 internal class Menu
@@ -44,7 +45,7 @@ internal class Menu
             switch (gameSelected.Trim().ToLower())
             {
                 case "v":
-                    Helpers.PrintGames();
+                    DataManager.PrintGames();
                     break;
                 case "a":
                     gameEngine.AdditionGame("Addition game");

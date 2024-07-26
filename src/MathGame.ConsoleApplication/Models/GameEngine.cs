@@ -6,6 +6,7 @@
 
 using MathGame.ConsoleApplication.Utilities;
 using MathGame.Enums;
+using MathGame.DataControl;
 
 namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
@@ -44,7 +45,7 @@ internal class GameEngine
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
 
-        Helpers.AddToHistory(score, GameType.Division);
+        DataManager.AddToHistory(score, GameType.Division);
     }
     internal void MultiplicationGame(string message)
     {
@@ -85,7 +86,7 @@ internal class GameEngine
         }
 
 
-        Helpers.AddToHistory(score, GameType.Mulitplication);
+        DataManager.AddToHistory(score, GameType.Mulitplication);
     }
     internal void SubtractionGame(string message)
     {
@@ -125,7 +126,7 @@ internal class GameEngine
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
 
-        Helpers.AddToHistory(score, GameType.Subtraction);
+        DataManager.AddToHistory(score, GameType.Subtraction);
 
     }
     internal void AdditionGame(string message)
@@ -184,11 +185,7 @@ internal class GameEngine
             }
         }
 
-        Helpers.AddToHistory(score, GameType.Addition);
-
-
-
-
+        DataManager.AddToHistory(score, GameType.Addition);
 
     }
 
