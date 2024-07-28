@@ -9,6 +9,6 @@ public enum GameType
 {
     Addition,
     Subtraction,
-    Mulitplication,
+    Multiplication,
     Division
 }

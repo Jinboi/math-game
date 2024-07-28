@@ -23,8 +23,6 @@ public class DifficultySettings
                 Console.WriteLine("Invalid Input");
                 return;
         }
-
-
     }    
     public int minNum { get; }
     public int maxNum { get; }

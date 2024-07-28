@@ -7,7 +7,7 @@
 using MathGame.ConsoleApplication.Utilities;
 using MathGame.Enums;
 using MathGame.DataControl;
-using MathGame.Logic;
+using MathGame.Models;
 
 namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
@@ -22,12 +22,29 @@ internal class GameEngine
 
         var gameDifficulty = ChooseDifficulty();
 
-        QuestionEngine.GenerateQuestions(gameType, gameDifficulty);
+        switch (gameType)
+        {
+            case GameType.Addition:
+                AdditionGame(gameDifficulty);
+                break;
 
-    }
+            case GameType.Subtraction:
+                SubtractionGame(gameDifficulty);
+                break;
 
-    
+            case GameType.Multiplication:
+                MultiplicationGame(gameDifficulty);
+                break;
 
+            case GameType.Division:
+                DivisionGame(gameDifficulty);
+                break;
+
+            default:
+                Console.WriteLine("Invalid game type selected.");
+                break;
+        }
+    }   
     internal static GameDifficulty ChooseDifficulty()
     {
         Console.WriteLine("Choose Your Game Difficulty");
@@ -46,17 +63,15 @@ internal class GameEngine
 
         return output;
     }
-
-    internal void DivisionGame(string message)
-    {
+    internal void DivisionGame(GameDifficulty gameDifficulty)
+    {        
         var score = 0;
 
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
-            Console.WriteLine(message);
 
-            var divisionNumbers = Helpers.GetDivisionNumbers();
+            var divisionNumbers = Helpers.GetDivisionNumbers(gameDifficulty);
             var firstNumber = divisionNumbers[0];
             var secondNumber = divisionNumbers[1];
 
@@ -80,10 +95,12 @@ internal class GameEngine
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
 
-        DataManager.AddToHistory(score, GameType.Division);
+        DataManager.AddToHistory(score, GameType.Division, gameDifficulty);
     }
-    internal void MultiplicationGame(string message)
+    internal void MultiplicationGame(GameDifficulty gameDifficulty)
     {
+        var settings = new DifficultySettings(gameDifficulty);
+
         var random = new Random();
         var score = 0;
 
@@ -93,10 +110,9 @@ internal class GameEngine
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
-            Console.WriteLine(message);
 
-            firstNumber = random.Next(1, 9);
-            secondNumber = random.Next(1, 9);
+            firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
             Console.WriteLine($"{firstNumber} * {secondNumber}");
 
@@ -121,10 +137,12 @@ internal class GameEngine
         }
 
 
-        DataManager.AddToHistory(score, GameType.Mulitplication);
+        DataManager.AddToHistory(score, GameType.Multiplication, gameDifficulty);
     }
-    internal void SubtractionGame(string message)
+    internal void SubtractionGame(GameDifficulty gameDifficulty)
     {
+        var settings = new DifficultySettings(gameDifficulty);
+
         var random = new Random();
         var score = 0;
 
@@ -134,10 +152,9 @@ internal class GameEngine
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
-            Console.WriteLine(message);
 
-            firstNumber = random.Next(1, 9);
-            secondNumber = random.Next(1, 9);
+            firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
             Console.WriteLine($"{firstNumber} - {secondNumber}");
 
@@ -161,15 +178,12 @@ internal class GameEngine
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
 
-        DataManager.AddToHistory(score, GameType.Subtraction);
+        DataManager.AddToHistory(score, GameType.Subtraction, gameDifficulty);
 
     }
-    internal void AdditionGame(string message)
+    internal void AdditionGame(GameDifficulty gameDifficulty)
     {
-        
-
-        int minNum;
-        int maxNum;
+        var settings = new DifficultySettings(gameDifficulty);
 
         var random = new Random();
         var score = 0;
@@ -180,10 +194,9 @@ internal class GameEngine
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
-            Console.WriteLine(message);
 
-            firstNumber = random.Next(minNum, maxNum + 1);
-            secondNumber = random.Next(minNum, maxNum + 1);
+            firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
             Console.WriteLine($"{firstNumber} + {secondNumber}");
 
@@ -210,14 +223,9 @@ internal class GameEngine
             }
         }
 
-        DataManager.AddToHistory(score, GameType.Addition);
+        DataManager.AddToHistory(score, GameType.Addition, gameDifficulty);
 
     }
-
-    
-
-    
-
 
     #endregion
 }

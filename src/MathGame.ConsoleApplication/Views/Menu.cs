@@ -51,13 +51,13 @@ internal class Menu
                     gameEngine.PlayGame(GameType.Addition);
                     break;
                 case "s":
-                    gameEngine.SubtractionGame("Subtraction game");
+                    gameEngine.PlayGame(GameType.Subtraction);
                     break;
                 case "m":
-                    gameEngine.MultiplicationGame("Multiplication game");
+                    gameEngine.PlayGame(GameType.Multiplication);
                     break;
                 case "d":
-                    gameEngine.DivisionGame("Division game");
+                    gameEngine.PlayGame(GameType.Division);
                     break;
                 case "q":
                     Console.WriteLine("Goodbye my friend");

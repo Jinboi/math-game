@@ -11,14 +11,17 @@ namespace MathGame.ConsoleApplication.Utilities;
 internal class Helpers
 {
     #region Methods: Internal
-
-    
-
-    internal static int[] GetDivisionNumbers()
+    internal static int[] GetDivisionNumbers(GameDifficulty gameDifficulty)
     {
+        var settings = new DifficultySettings(gameDifficulty);
+
         var random = new Random();
-        var firstNumber = random.Next(1, 99);
-        var secondNumber = random.Next(1, 99);
+
+        int firstNumber;
+        int secondNumber;
+
+        firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+        secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
         var result = new int[2];
 
@@ -32,11 +35,7 @@ internal class Helpers
         result[1] = secondNumber;
 
         return result;
-    }
-
-   
-
-
+    }  
     internal static string? ValidateResult(string result)
     {
         while (string.IsNullOrEmpty(result) || !int.TryParse(result, out _))
