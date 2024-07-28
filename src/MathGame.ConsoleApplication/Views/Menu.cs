@@ -5,8 +5,8 @@
 // -------------------------------------------------------------------------------------------------
 
 using MathGame.ConsoleApplication.Models;
-using MathGame.ConsoleApplication.Utilities;
 using MathGame.DataControl;
+using MathGame.Enums;
 
 namespace MathGame.ConsoleApplication.Views;
 internal class Menu
@@ -48,7 +48,7 @@ internal class Menu
                     DataManager.PrintGames();
                     break;
                 case "a":
-                    gameEngine.AdditionGame("Addition game");
+                    gameEngine.PlayGame(GameType.Addition);
                     break;
                 case "s":
                     gameEngine.SubtractionGame("Subtraction game");

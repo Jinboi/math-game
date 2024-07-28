@@ -7,11 +7,46 @@
 using MathGame.ConsoleApplication.Utilities;
 using MathGame.Enums;
 using MathGame.DataControl;
+using MathGame.Logic;
 
 namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
-{   
+{
     #region Methods: Internal
+    internal void PlayGame(GameType gameType)
+    {
+        Console.WriteLine(gameType);
+        Console.ReadLine();
+
+        Console.WriteLine();
+
+        var gameDifficulty = ChooseDifficulty();
+
+        QuestionEngine.GenerateQuestions(gameType, gameDifficulty);
+
+    }
+
+    
+
+    internal static GameDifficulty ChooseDifficulty()
+    {
+        Console.WriteLine("Choose Your Game Difficulty");
+
+        Console.WriteLine($@"
+        Choose Your Game Difficulty:
+        1 - Easy
+        2 - Normal
+        3 - Hard");
+        Console.WriteLine("_____________");
+
+        string? input = Console.ReadLine();
+        GameDifficulty output;
+
+        output = (GameDifficulty)int.Parse(input);
+
+        return output;
+    }
+
     internal void DivisionGame(string message)
     {
         var score = 0;
@@ -131,49 +166,10 @@ internal class GameEngine
     }
     internal void AdditionGame(string message)
     {
-
-        Console.WriteLine("Choose Your Game Difficulty");
-
-        Console.WriteLine($@"
-        Choose Your Game Difficulty:
-        1 - Easy
-        2 - Normal
-        3 - Hard");
-        Console.WriteLine("_____________");
-
-        var gameDifficultySelected = Console.ReadLine();
+        
 
         int minNum;
         int maxNum;
-
-        if (int.TryParse(gameDifficultySelected, out int difficulty))
-        {
-            GameDifficulty selectedDifficulty = (GameDifficulty)difficulty;
-
-            switch (selectedDifficulty)
-            {
-                case GameDifficulty.Easy:
-                    minNum = 1;
-                    maxNum = 9;
-                    break;
-                case GameDifficulty.Normal:
-                    minNum = 1;
-                    maxNum = 99;
-                    break;
-                case GameDifficulty.Hard:
-                    minNum = 1;
-                    maxNum = 999;
-                    break;
-                default:
-                    Console.WriteLine("Invalid Input");
-                    return; 
-            }
-        }
-        else
-        {
-            Console.WriteLine("Invalid Input");
-            return;
-        }
 
         var random = new Random();
         var score = 0;
@@ -186,7 +182,7 @@ internal class GameEngine
             Console.Clear();
             Console.WriteLine(message);
 
-            firstNumber = random.Next(minNum, maxNum + 1); 
+            firstNumber = random.Next(minNum, maxNum + 1);
             secondNumber = random.Next(minNum, maxNum + 1);
 
             Console.WriteLine($"{firstNumber} + {secondNumber}");
@@ -217,6 +213,11 @@ internal class GameEngine
         DataManager.AddToHistory(score, GameType.Addition);
 
     }
+
+    
+
+    
+
 
     #endregion
 }
