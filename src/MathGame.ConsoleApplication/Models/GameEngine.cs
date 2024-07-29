@@ -8,6 +8,7 @@ using MathGame.ConsoleApplication.Utilities;
 using MathGame.Enums;
 using MathGame.DataControl;
 using MathGame.Models;
+using System.Diagnostics;
 
 namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
@@ -65,7 +66,12 @@ internal class GameEngine
     }
     internal void DivisionGame(GameDifficulty gameDifficulty)
     {        
+
         var score = 0;
+        var stopwatch = new Stopwatch();
+        var timeTaken = new TimeSpan();
+
+        stopwatch.Start();
 
         for (int i = 0; i < 5; i++)
         {
@@ -94,6 +100,9 @@ internal class GameEngine
 
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
+
+        stopwatch.Stop();
+        timeTaken = timeTaken.Add(stopwatch.Elapsed);
 
         DataManager.AddToHistory(score, GameType.Division, gameDifficulty);
     }
