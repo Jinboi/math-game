@@ -66,7 +66,6 @@ internal class GameEngine
     }
     internal void DivisionGame(GameDifficulty gameDifficulty)
     {        
-
         var score = 0;
         var stopwatch = new Stopwatch();
         var timeTaken = new TimeSpan();
@@ -103,6 +102,8 @@ internal class GameEngine
 
         stopwatch.Stop();
         timeTaken = timeTaken.Add(stopwatch.Elapsed);
+        Console.WriteLine(timeTaken);
+        Console.ReadLine();
 
         DataManager.AddToHistory(score, GameType.Division, gameDifficulty);
     }
