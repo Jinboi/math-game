@@ -7,11 +7,12 @@
 using MathGame.Enums;
 using MathGame.Models;
 
+
 namespace MathGame.ConsoleApplication.Utilities;
 internal class Helpers
 {
     #region Methods: Internal
-    internal static int[] GetDivisionNumbers(GameDifficulty gameDifficulty)
+    internal static MathNumbers GetDivisionNumbers(GameDifficulty gameDifficulty)
     {
         var settings = new DifficultySettings(gameDifficulty);
 
@@ -23,18 +24,13 @@ internal class Helpers
         firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
         secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
-        var result = new int[2];
-
         while (firstNumber % secondNumber != 0)
         {
             firstNumber = random.Next(1, 99);
             secondNumber = random.Next(1, 99);
         }
 
-        result[0] = firstNumber;
-        result[1] = secondNumber;
-
-        return result;
+        return new MathNumbers(firstNumber, secondNumber);
     }  
     internal static string? ValidateResult(string result)
     {

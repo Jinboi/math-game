@@ -65,27 +65,23 @@ internal class GameEngine
         return output;
     }
     internal void DivisionGame(GameDifficulty gameDifficulty)
-    {        
+    {
         var score = 0;
-        var stopwatch = new Stopwatch();
-        var timeTaken = new TimeSpan();
 
-        stopwatch.Start();
+        GameTimer.StartTimer();
 
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
 
-            var divisionNumbers = Helpers.GetDivisionNumbers(gameDifficulty);
-            var firstNumber = divisionNumbers[0];
-            var secondNumber = divisionNumbers[1];
+            var mathNumbers = Helpers.GetDivisionNumbers(gameDifficulty);
 
-            Console.WriteLine($"{firstNumber} / {secondNumber}");
+            Console.WriteLine($"{mathNumbers.FirstNumber} / {mathNumbers.SecondNumber}");
             var result = Console.ReadLine();
 
             result = Helpers.ValidateResult(result);
 
-            if (int.Parse(result) == firstNumber / secondNumber)
+            if (int.Parse(result) == mathNumbers.FirstNumber / mathNumbers.SecondNumber)
             {
                 Console.WriteLine("Your answer was correct! Type key for next question");
                 score++;
@@ -100,13 +96,12 @@ internal class GameEngine
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
 
-        stopwatch.Stop();
-        timeTaken = timeTaken.Add(stopwatch.Elapsed);
-        Console.WriteLine(timeTaken);
+        GameTimer.StopTimer(out double timeTakenInSeconds);
+        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
         Console.ReadLine();
 
         DataManager.AddToHistory(score, GameType.Division, gameDifficulty);
-    }
+    }   
     internal void MultiplicationGame(GameDifficulty gameDifficulty)
     {
         var settings = new DifficultySettings(gameDifficulty);
@@ -116,6 +111,8 @@ internal class GameEngine
 
         int firstNumber;
         int secondNumber;
+
+        GameTimer.StartTimer();
 
         for (int i = 0; i < 5; i++)
         {
@@ -129,7 +126,6 @@ internal class GameEngine
             var result = Console.ReadLine();
 
             result = Helpers.ValidateResult(result);
-
 
             if (int.Parse(result) == firstNumber * secondNumber)
             {
@@ -146,6 +142,9 @@ internal class GameEngine
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
 
+        GameTimer.StopTimer(out double timeTakenInSeconds);
+        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
+        Console.ReadLine();
 
         DataManager.AddToHistory(score, GameType.Multiplication, gameDifficulty);
     }
