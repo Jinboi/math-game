@@ -13,6 +13,11 @@ using System.Diagnostics;
 namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
 {
+    #region Constructors
+
+    private Random random = new Random();
+
+    #endregion
     #region Methods: Internal
     internal void PlayGame(GameType gameType)
     {
@@ -105,12 +110,9 @@ internal class GameEngine
     internal void MultiplicationGame(GameDifficulty gameDifficulty)
     {
         var settings = new DifficultySettings(gameDifficulty);
+        var mathNumbers = new MathNumbers();
 
-        var random = new Random();
         var score = 0;
-
-        int firstNumber;
-        int secondNumber;
 
         GameTimer.StartTimer();
 
@@ -118,16 +120,16 @@ internal class GameEngine
         {
             Console.Clear();
 
-            firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
-            secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            mathNumbers.FirstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            mathNumbers.SecondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
-            Console.WriteLine($"{firstNumber} * {secondNumber}");
+            Console.WriteLine($"{mathNumbers.FirstNumber} * {mathNumbers.SecondNumber}");
 
             var result = Console.ReadLine();
 
             result = Helpers.ValidateResult(result);
 
-            if (int.Parse(result) == firstNumber * secondNumber)
+            if (int.Parse(result) == mathNumbers.FirstNumber * mathNumbers.SecondNumber)
             {
                 Console.WriteLine("Your answer was correct!");
                 score++;
@@ -151,28 +153,26 @@ internal class GameEngine
     internal void SubtractionGame(GameDifficulty gameDifficulty)
     {
         var settings = new DifficultySettings(gameDifficulty);
+        var mathNumbers = new MathNumbers();
 
-        var random = new Random();
         var score = 0;
 
-        int firstNumber;
-        int secondNumber;
+        GameTimer.StartTimer();
 
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
 
-            firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
-            secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            mathNumbers.FirstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            mathNumbers.SecondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
-            Console.WriteLine($"{firstNumber} - {secondNumber}");
+            Console.WriteLine($"{mathNumbers.FirstNumber} - {mathNumbers.SecondNumber}");
 
             var result = Console.ReadLine();
 
             result = Helpers.ValidateResult(result);
 
-
-            if (int.Parse(result) == firstNumber - secondNumber)
+            if (int.Parse(result) == mathNumbers.FirstNumber - mathNumbers.SecondNumber)
             {
                 Console.WriteLine("Your answer was correct!");
                 score++;
@@ -187,33 +187,36 @@ internal class GameEngine
             if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
         }
 
+        GameTimer.StopTimer(out double timeTakenInSeconds);
+        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
+        Console.ReadLine();
+
         DataManager.AddToHistory(score, GameType.Subtraction, gameDifficulty);
 
     }
     internal void AdditionGame(GameDifficulty gameDifficulty)
     {
         var settings = new DifficultySettings(gameDifficulty);
+        var mathNumbers = new MathNumbers();
 
-        var random = new Random();
         var score = 0;
 
-        int firstNumber;
-        int secondNumber;
+        GameTimer.StartTimer();
 
         for (int i = 0; i < 5; i++)
         {
             Console.Clear();
 
-            firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
-            secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            mathNumbers.FirstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            mathNumbers.SecondNumber = random.Next(settings.minNum, settings.maxNum + 1);
 
-            Console.WriteLine($"{firstNumber} + {secondNumber}");
+            Console.WriteLine($"{mathNumbers.FirstNumber} + {mathNumbers.SecondNumber}");
 
             var result = Console.ReadLine();
 
             result = Helpers.ValidateResult(result);
 
-            if (int.Parse(result) == firstNumber + secondNumber)
+            if (int.Parse(result) == mathNumbers.FirstNumber + mathNumbers.SecondNumber)
             {
                 Console.WriteLine("Your answer was correct!");
                 score++;
@@ -232,8 +235,11 @@ internal class GameEngine
             }
         }
 
-        DataManager.AddToHistory(score, GameType.Addition, gameDifficulty);
+        GameTimer.StopTimer(out double timeTakenInSeconds);
+        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
+        Console.ReadLine();
 
+        DataManager.AddToHistory(score, GameType.Addition, gameDifficulty);
     }
 
     #endregion
