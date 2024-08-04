@@ -7,7 +7,6 @@
 using MathGame.Enums;
 using MathGame.Models;
 
-
 namespace MathGame.ConsoleApplication.Utilities;
 internal class Helpers
 {
