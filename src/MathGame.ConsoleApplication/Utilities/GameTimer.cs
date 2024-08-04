@@ -9,7 +9,6 @@ internal static class GameTimer
         stopwatch.Reset();
         stopwatch.Start();
     }
-
     public static void StopTimer(out double timeTakenInSeconds)
     {
         stopwatch.Stop();
