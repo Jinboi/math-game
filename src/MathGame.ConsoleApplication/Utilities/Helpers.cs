@@ -53,6 +53,17 @@ internal class Helpers
         }
         return name;
     }
+    internal static int usersChooseNumberOfQuestions()
+    {
+        Console.WriteLine("How many questions do you want to solve?");
 
+        var result = Console.ReadLine();
+
+        result = Helpers.ValidateResult(result);
+
+        int resultInt = int.Parse(result);
+
+        return resultInt;
+    }
     #endregion
 }
