@@ -8,7 +8,6 @@ using MathGame.ConsoleApplication.Utilities;
 using MathGame.Enums;
 using MathGame.DataControl;
 using MathGame.Models;
-using System.Diagnostics;
 
 namespace MathGame.ConsoleApplication.Models;
 internal class GameEngine
@@ -44,6 +43,10 @@ internal class GameEngine
 
             case GameType.Division:
                 DivisionGame(gameDifficulty);
+                break;
+
+            case GameType.Random:
+                RandomGame(gameDifficulty);
                 break;
 
             default:
@@ -100,7 +103,11 @@ internal class GameEngine
                 Console.ReadLine();
             }
 
-            if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
+            if (i == numberOfQuestions - 1)
+            {
+                Console.WriteLine($"Game over. Your final score is {score}");
+                Console.ReadLine();
+            }
         }
 
         GameTimer.StopTimer(out double timeTakenInSeconds);
@@ -108,10 +115,7 @@ internal class GameEngine
         Console.ReadLine();
 
         DataManager.AddToHistory(score, GameType.Division, gameDifficulty);
-    }
-
-    
-
+    }     
     internal void MultiplicationGame(GameDifficulty gameDifficulty)
     {
         var settings = new DifficultySettings(gameDifficulty);
@@ -123,7 +127,7 @@ internal class GameEngine
 
         GameTimer.StartTimer();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < numberOfQuestions; i++)
         {
             Console.Clear();
 
@@ -148,7 +152,11 @@ internal class GameEngine
                 Console.ReadLine();
             }
 
-            if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
+            if (i == numberOfQuestions - 1)
+            {
+                Console.WriteLine($"Game over. Your final score is {score}");
+                Console.ReadLine();
+            }
         }
 
         GameTimer.StopTimer(out double timeTakenInSeconds);
@@ -168,7 +176,7 @@ internal class GameEngine
 
         GameTimer.StartTimer();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < numberOfQuestions; i++)
         {
             Console.Clear();
 
@@ -193,7 +201,11 @@ internal class GameEngine
                 Console.ReadLine();
             }
 
-            if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
+            if (i == numberOfQuestions - 1)
+            {
+                Console.WriteLine($"Game over. Your final score is {score}. Press any key to go back to the menu");
+                Console.ReadLine();
+            }
         }
 
         GameTimer.StopTimer(out double timeTakenInSeconds);
@@ -214,7 +226,7 @@ internal class GameEngine
 
         GameTimer.StartTimer();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < numberOfQuestions; i++)
         {
             Console.Clear();
 
@@ -239,7 +251,7 @@ internal class GameEngine
                 Console.ReadLine();
             }
 
-            if (i == 4)
+            if (i == numberOfQuestions - 1)
             {
                 Console.WriteLine($"Game over. Your final score is {score}. Press any key to go back to the menu");
                 Console.ReadLine();
@@ -252,7 +264,90 @@ internal class GameEngine
 
         DataManager.AddToHistory(score, GameType.Addition, gameDifficulty);
     }
+    internal void RandomGame(GameDifficulty gameDifficulty)
+    {
 
+
+        var settings = new DifficultySettings(gameDifficulty);
+        var mathNumbers = new MathNumbers();
+
+        var score = 0;
+
+        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
+
+        GameTimer.StartTimer();
+
+        //Wrong questions are getting thrown 
+
+        for (int i = 0; i < numberOfQuestions; i++)
+        {
+            Console.Clear();
+
+            mathNumbers.FirstNumber = random.Next(settings.minNum, settings.maxNum + 1);
+            mathNumbers.SecondNumber = random.Next(settings.minNum, settings.maxNum + 1);
+
+            string operation = GetRandomOperation();
+            int correctAnswer = 0;
+            switch (operation)
+            {
+                case "+":
+                    correctAnswer = mathNumbers.FirstNumber + mathNumbers.SecondNumber;
+                    break;
+                case "-":
+                    correctAnswer = mathNumbers.FirstNumber - mathNumbers.SecondNumber;
+                    break;
+                case "*":
+                    correctAnswer = mathNumbers.FirstNumber * mathNumbers.SecondNumber;
+                    break;
+                case "/":
+                    if (mathNumbers.SecondNumber == 0) mathNumbers.SecondNumber = 1; // Avoid division by zero
+                    correctAnswer = mathNumbers.FirstNumber / mathNumbers.SecondNumber;
+                    break;
+            }
+
+            Console.WriteLine($"{mathNumbers.FirstNumber} {operation} {mathNumbers.SecondNumber}");
+
+            var result = Console.ReadLine();
+
+            result = Helpers.ValidateResult(result);
+
+            if (int.Parse(result) == correctAnswer)
+            {
+                Console.WriteLine("Your answer was correct!");
+                score++;
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Your answer was incorrect.");
+                Console.ReadLine();
+            }
+
+            if (i == numberOfQuestions - 1)
+            {
+                Console.WriteLine($"Game over. Your final score is {score}. Press any key to go back to the menu");
+                Console.ReadLine();
+            }
+        }
+
+        GameTimer.StopTimer(out double timeTakenInSeconds);
+        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
+        Console.ReadLine();
+
+        DataManager.AddToHistory(score, GameType.Addition, gameDifficulty);
+    }
+    private string GetRandomOperation()
+    {
+        int operationIndex = random.Next(1, 5);
+        return operationIndex switch
+        {
+            1 => "+",
+            2 => "-",
+            3 => "/",
+            4 => "*",
+            _ => "+", // Default case, though it should never reach here
+        };
+    }
     #endregion
 }
 
