@@ -73,9 +73,11 @@ internal class GameEngine
     {
         var score = 0;
 
+        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
+
         GameTimer.StartTimer();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < numberOfQuestions; i++)
         {
             Console.Clear();
 
@@ -106,13 +108,18 @@ internal class GameEngine
         Console.ReadLine();
 
         DataManager.AddToHistory(score, GameType.Division, gameDifficulty);
-    }   
+    }
+
+    
+
     internal void MultiplicationGame(GameDifficulty gameDifficulty)
     {
         var settings = new DifficultySettings(gameDifficulty);
         var mathNumbers = new MathNumbers();
 
         var score = 0;
+
+        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
 
         GameTimer.StartTimer();
 
@@ -157,6 +164,8 @@ internal class GameEngine
 
         var score = 0;
 
+        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
+
         GameTimer.StartTimer();
 
         for (int i = 0; i < 5; i++)
@@ -200,6 +209,8 @@ internal class GameEngine
         var mathNumbers = new MathNumbers();
 
         var score = 0;
+
+        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
 
         GameTimer.StartTimer();
 
