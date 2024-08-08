@@ -1,10 +1,20 @@
-﻿namespace MathGame.Models;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Models.MathNumbers
+// -------------------------------------------------------------------------------------------------
+// Setting up first number and second number.
+// -------------------------------------------------------------------------------------------------
+
+namespace MathGame.Models;
 public class MathNumbers
 {
+    #region Properties
     public int FirstNumber { get; set; }
     public int SecondNumber { get; set; }
 
-    // Parameterless constructor
+    #endregion
+    #region Constructors
+
+    //Parameterless MathNumbers constructors
     public MathNumbers()
     {
         FirstNumber = 0;
@@ -15,4 +25,5 @@ public class MathNumbers
         FirstNumber = firstNumber;
         SecondNumber = secondNumber;
     }
+    #endregion
 }

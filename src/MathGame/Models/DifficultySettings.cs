@@ -1,8 +1,20 @@
-﻿using MathGame.Enums;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Models.DifficultySettings
+// -------------------------------------------------------------------------------------------------
+// Data models for min and max numbers based on the game difficulty settings.
+// -------------------------------------------------------------------------------------------------
+
+using MathGame.Enums;
 
 namespace MathGame.Models;
 public class DifficultySettings
 {
+    #region Properties
+    public int minNum { get; }
+    public int maxNum { get; }
+
+    #endregion
+    #region Constructors
     public DifficultySettings(GameDifficulty gameDifficulty)
     {
         switch (gameDifficulty)
@@ -23,8 +35,8 @@ public class DifficultySettings
                 Console.WriteLine("Invalid Input");
                 return;
         }
-    }    
-    public int minNum { get; }
-    public int maxNum { get; }
+    }
+
+    #endregion
 }
 
