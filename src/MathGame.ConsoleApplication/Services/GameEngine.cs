@@ -15,6 +15,8 @@ internal class GameEngine
     #region Fields
 
     private Random random = new Random();
+    private int score;
+    private int numberOfQuestions;
 
     #endregion
     #region Methods: Internal
@@ -79,94 +81,72 @@ internal class GameEngine
     }
     internal void DivisionGame(GameDifficulty gameDifficulty)
     {
-        int score = 0;
-
-        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
-
-        GameTimer.DisplayCountdown();
-        GameTimer.StartTimer();
+        InitializeGame();
 
         DivisionGameLogic(numberOfQuestions, ref score, gameDifficulty);
 
-        Console.WriteLine($"Game over. Your final score is {score}");
-        GameTimer.StopTimer(out double timeTakenInSeconds);
-        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
-        Console.ReadLine();
+        DisplayGameResult();
 
         DataManager.AddToHistory(score, GameType.Division, gameDifficulty);
-    }    
+    }
     internal void MultiplicationGame(GameDifficulty gameDifficulty)
     {
-        int score = 0;
-        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
-
-        GameTimer.DisplayCountdown();
-        GameTimer.StartTimer();
+        InitializeGame();
 
         MultiplicationGameLogic(numberOfQuestions, ref score, gameDifficulty);
 
-        Console.WriteLine($"Game over. Your final score is {score}");
-        GameTimer.StopTimer(out double timeTakenInSeconds);
-        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
-        Console.ReadLine();
+        DisplayGameResult();
 
         DataManager.AddToHistory(score, GameType.Multiplication, gameDifficulty);
     }    
     internal void SubtractionGame(GameDifficulty gameDifficulty)
     {
-        int score = 0;
-        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
-
-        GameTimer.DisplayCountdown();
-        GameTimer.StartTimer();
+        InitializeGame();
 
         SubtractionGameLogic(numberOfQuestions, ref score, gameDifficulty);
 
-        Console.WriteLine($"Game over. Your final score is {score}");
-        GameTimer.StopTimer(out double timeTakenInSeconds);
-        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
-        Console.ReadLine();
+        DisplayGameResult();
 
         DataManager.AddToHistory(score, GameType.Subtraction, gameDifficulty);
     }   
     internal void AdditionGame(GameDifficulty gameDifficulty)
     {
-        int score = 0;
-        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
-
-        GameTimer.DisplayCountdown();
-        GameTimer.StartTimer();
+        InitializeGame();
 
         AdditionGameLogic(numberOfQuestions, ref score, gameDifficulty);
 
-        Console.WriteLine($"Game over. Your final score is {score}");
-        GameTimer.StopTimer(out double timeTakenInSeconds);
-        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
-        Console.ReadLine();
+        DisplayGameResult();
 
         DataManager.AddToHistory(score, GameType.Addition, gameDifficulty);
     }    
     internal void RandomGame(GameDifficulty gameDifficulty)
     {
-        int score = 0;
-        int numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
+        InitializeGame();
 
-        GameTimer.DisplayCountdown();
-        GameTimer.StartTimer();
+        RandomGameLogic(numberOfQuestions, ref score, gameDifficulty);
 
-        RandomGameLogic(numberOfQuestions, ref score, gameDifficulty);       
-
-        Console.WriteLine($"Game over. Your final score is {score}");
-
-        GameTimer.StopTimer(out double timeTakenInSeconds);
-        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
-        Console.ReadLine();
+        DisplayGameResult();
 
         DataManager.AddToHistory(score, GameType.Random, gameDifficulty);
     }
 
     #endregion
     #region Methods: Private
+    private void InitializeGame()
+    {
+        score = 0;
+        numberOfQuestions = Helpers.usersChooseNumberOfQuestions();
+
+        GameTimer.DisplayCountdown();
+        GameTimer.StartTimer();
+    }
+    private void DisplayGameResult()
+    {
+        Console.WriteLine($"Game over. Your final score is {score}");
+        GameTimer.StopTimer(out double timeTakenInSeconds);
+        Console.WriteLine("You took {0:N1} seconds to complete", timeTakenInSeconds);
+        Console.ReadLine();
+    }
     private void DivisionGameLogic(int numberOfQuestions, ref int score, GameDifficulty gameDifficulty)
     {
         for (int i = 0; i < numberOfQuestions; i++)
