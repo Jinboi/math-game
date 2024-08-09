@@ -1,36 +1,13 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// MathGame.ConsoleApplication.Helpers
+// MathGame.ConsoleApplication.Utilities.Helpers
 // -------------------------------------------------------------------------------------------------
-// Helper class to provide sample data and other functions used in GameEngine.
+// Helper class to provide sample data and other functions used in game engine.
 // -------------------------------------------------------------------------------------------------
-
-using MathGame.Enums;
-using MathGame.Models;
 
 namespace MathGame.ConsoleApplication.Utilities;
 internal class Helpers
 {
-    #region Methods: Internal
-    internal static MathNumbers GetDivisionNumbers(GameDifficulty gameDifficulty)
-    {
-        var settings = new DifficultySettings(gameDifficulty);
-
-        var random = new Random();
-
-        int firstNumber;
-        int secondNumber;
-
-        firstNumber = random.Next(settings.minNum, settings.maxNum + 1);
-        secondNumber = random.Next(settings.minNum, settings.maxNum + 1);
-
-        while (firstNumber % secondNumber != 0)
-        {
-            firstNumber = random.Next(1, 99);
-            secondNumber = random.Next(1, 99);
-        }
-
-        return new MathNumbers(firstNumber, secondNumber);
-    }  
+    #region Methods: Internal    
     internal static string? ValidateResult(string result)
     {
         while (string.IsNullOrEmpty(result) || !int.TryParse(result, out _))
@@ -59,7 +36,7 @@ internal class Helpers
 
         var result = Console.ReadLine();
 
-        result = Helpers.ValidateResult(result);
+        result = ValidateResult(result);
 
         int resultInt = int.Parse(result);
 

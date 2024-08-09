@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// MathGame.ConsoleApplication.Menu
+// MathGame.ConsoleApplication.Views.Menu
 // -------------------------------------------------------------------------------------------------
 // The menu for the console application.
 // -------------------------------------------------------------------------------------------------
@@ -37,6 +37,7 @@ internal class Menu
                     S - Subtraction
                     M - Multiplication
                     D - Division
+                    R - Random
                     Q - Quit the program");
             Console.WriteLine("_____________");
 
@@ -58,6 +59,9 @@ internal class Menu
                     break;
                 case "d":
                     gameEngine.PlayGame(GameType.Division);
+                    break;
+                case "r":
+                    gameEngine.PlayGame(GameType.Random);
                     break;
                 case "q":
                     Console.WriteLine("Goodbye my friend");
