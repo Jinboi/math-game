@@ -1,27 +1,26 @@
 <div align="center">
 
-<img src="./img/math-game-logo.png" alt="math game logo" width="100px" />
+<img src="./img/mathGameLogo.png" alt="math game logo" width="100px" />
 <h1> Math Game</h1>
 
 </div>
 
 Welcome to the Math Game App!
 
-This interactive application was built as a demo application, with the target audience being young school children.
-It aims to challenge their math skills through various arithmetic operations. 
-It can be played via Console Application, or MAUI application (Windows only).
+This demo helps young children sharpen their math skills with fun and simple math questions.  
 
-Choose your operation, difficulty level, and number of questions to start sharpening your mind!
+You can choose your difficulty and number of questions. 
+
+You can even choose a Random option if you're up for the challenge!
 
 ## Features
 
-- **Basic Operations**: Addition, Subtraction, Multiplication, Division.
-- **Integer-Only Division**: All division problems ensure integer results with dividends ranging from 0 to 100.
-- **User Menu**: Easy-to-use menu for selecting operations, difficulty levels, and more.
-- **Game History**: View a history of all your previous games.
+- **Basic Math Questions**: Addition, Subtraction, Multiplication, Division.
+- **Integer-Only Division**: All division problems ensure integer results with dividends.
+- **Game History**: You can view all the history of your previous games. However, your data will get deleted once you've closed the Math Game application.
 - **Difficulty Levels**: Select from different levels of difficulty to match your skill.
-- **Timer**: Tracks the time taken to complete each game.
-- **Customizable Questions**: Choose the number of questions you want to attempt.
+- **Timer**: You'll be able to see how long you took to clear your game.
+- **Number of Questions**: You can choose your own number of questions you want to attempt.
 - **Random Game**: Get questions from random operations for an extra challenge.
 
 ## Getting Started
@@ -35,21 +34,20 @@ Choose your operation, difficulty level, and number of questions to start sharpe
 #### Console
 
 1. Clone the repository:
-	- `git clone https://github.com/cjc-sweatbox/math-game.git`
+	- `git clone https://github.com/Jinboi/math-game.git`
 
 2. Navigate to the project directory:
-	- `cd src\math-game\MathGame.Console`
+	- `cd src\math-game\MathGame.ConsoleApplication`
 
 3. Run the application using the .NET CLI:
 	- `dotnet run`
 
-#### MAUI
 
-To be confirmed.
+# UNTILL HERE
 
-## Usage
 
-### Console
+
+### Console Screenshots
 
 When you start the application, you will be asked to type your name:
 
