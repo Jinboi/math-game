@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MathGame.ConsoleApplication": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\MEGA\\WIP\\02-GitWIP\\Aug 11 new\\math-game\\src"
+    }
+  }
+}
