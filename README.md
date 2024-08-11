@@ -50,7 +50,7 @@ This is what your main menu looks like:
 
 ![math game console main menu](./img/mathGameMainMenu.PNG)
 
-Choose an option:
+## Choose an option:
 - **V**: to view all the history of your previous games.
 - **A**: to play an Addition game.
 - **S**: to play a Subtraction game.
@@ -63,7 +63,7 @@ Once you choose to play a Math Game, you will be able to choose your game diffic
 
 ![math game console game difficulty](./img/mathGameGameDifficulty.PNG)
 
-Choose an option:
+## Choose an option:
 - **Easy**: numbers between 1-9.
 - **Normal**: numbers between 1-99.
 - **Hard**: numbers between 1-999.
@@ -87,7 +87,7 @@ Finally, you can see your game history of previous games from View History:
 ## How It Works
 
 - **Menu Navigation**: Use the provided options to select and configure your game.
-- **Question** Generation: Questions are generated according to your chosen operation and difficulty level.
+- **Questions** Questions are generated according to your chosen operation and difficulty level.
 - **Timer**: The timer begins when you start answering and stops when you finish.
 - **History Recording**: After completing a game, your score and time are recorded in the history.
 
@@ -111,4 +111,4 @@ Finally, you can see your game history of previous games from View History:
 - For any questions or feedback, please open an issue.
 
 ---
-***Happy Math Gaming!***
+***Thank you and Happy Coding!***
